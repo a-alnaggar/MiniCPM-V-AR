@@ -208,7 +208,7 @@ def train():
         lora_args,
     ) = parser.parse_args_into_dataclasses()
     
-    logging.info(f"DeepSpeed Status: {deepspeed.is_deepspeed_zero3_enabled()}")
+    print(f"DeepSpeed Status: {deepspeed.is_deepspeed_zero3_enabled()}")
     if getattr(training_args, "deepspeed", None) : 
         training_args.distributed_state.distributed_type = DistributedType.DEEPSPEED
 
