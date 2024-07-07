@@ -9,7 +9,7 @@ MASTER_PORT=6001
 MODEL="$1" # or openbmb/MiniCPM-V-2
 
 # Download model via modelscope
-MODE_DIR=$(python3 down_load_model.py)  
+MODE_DIR=$(python3 down_load_model.py $MODEL)  
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
 DATA="$2"
