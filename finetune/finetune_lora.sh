@@ -25,7 +25,7 @@ DISTRIBUTED_ARGS="
 "
 
 torchrun $DISTRIBUTED_ARGS $(pwd)/finetune.py  \
-    --model_name_or_path $MODEL_DIR \
+    --model_name_or_path $MODEL \
     --llm_type $LLM_TYPE \
     --data_path $DATA \
     --eval_data_path $EVAL_DATA \
