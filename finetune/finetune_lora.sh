@@ -20,7 +20,8 @@ DISTRIBUTED_ARGS="
     --master_addr $MASTER_ADDR \
     --master_port $MASTER_PORT
 "
-torchrun $DISTRIBUTED_ARGS finetune.py  \
+
+torchrun $DISTRIBUTED_ARGS $(pwd)/finetune.py  \
     --model_name_or_path $MODEL \
     --llm_type $LLM_TYPE \
     --data_path $DATA \
