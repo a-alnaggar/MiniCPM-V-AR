@@ -44,7 +44,7 @@ torchrun $DISTRIBUTED_ARGS $(pwd)/finetune.py  \
     --lora_target_modules "llm\..*layers\.\d+\.self_attn\.(q_proj|k_proj)" \
     --model_max_length 1024 \
     --max_slice_nums 9 \
-    --max_steps 10000 \
+    --max_steps 1500 \
     --eval_steps 1000 \
     --output_dir output/output_minicpmv2_lora \
     --logging_dir output/output_minicpmv2_lora \
