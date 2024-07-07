@@ -20,7 +20,6 @@ from dataset import SupervisedDataset, data_collator
 from trainer import CPMTrainer
 
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
-from modelscope import snapshot_download
 
 
 @dataclass
@@ -229,9 +228,8 @@ def train():
                 "FSDP or ZeRO3 are not incompatible with QLoRA."
             )
     
-    model_dir = snapshot_download(model_args.model_name_or_path)
     model = AutoModel.from_pretrained(
-        model_dir,
+        model_args.model_name_or_path,
         trust_remote_code=True,
         torch_dtype=compute_dtype,
         device_map=device_map,
