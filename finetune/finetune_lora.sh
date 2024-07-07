@@ -7,6 +7,9 @@ MASTER_ADDR=localhost
 MASTER_PORT=6001
 
 MODEL="$1" # or openbmb/MiniCPM-V-2
+
+# Download model via modelscope
+MODE_DIR=$(python3 down_load_model.py)  
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
 DATA="$2"
@@ -22,7 +25,7 @@ DISTRIBUTED_ARGS="
 "
 
 torchrun $DISTRIBUTED_ARGS $(pwd)/finetune.py  \
-    --model_name_or_path $MODEL \
+    --model_name_or_path $MODEL_DIR \
     --llm_type $LLM_TYPE \
     --data_path $DATA \
     --eval_data_path $EVAL_DATA \

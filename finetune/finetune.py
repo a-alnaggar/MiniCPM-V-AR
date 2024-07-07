@@ -194,20 +194,20 @@ def get_parameter_number(model):
 
 
 local_rank = 0
-parser = transformers.HfArgumentParser(
-        (ModelArguments, DataArguments, TrainingArguments, LoraArguments)
-    )
-(
-    model_args,
-    data_args,
-    training_args,
-    lora_args,
-) = parser.parse_args_into_dataclasses()
-model_dir = snapshot_download(model_args.model_name_or_path)
+
 
 def train():
     global local_rank
-    
+    parser = transformers.HfArgumentParser(
+        (ModelArguments, DataArguments, TrainingArguments, LoraArguments)
+    )
+
+    (
+        model_args,
+        data_args,
+        training_args,
+        lora_args,
+    ) = parser.parse_args_into_dataclasses()
 
     if getattr(training_args, "deepspeed", None) : 
         training_args.distributed_state.distributed_type = DistributedType.DEEPSPEED
@@ -229,7 +229,7 @@ def train():
                 "FSDP or ZeRO3 are not incompatible with QLoRA."
             )
     
-
+    model_dir = snapshot_download(model_args.model_name_or_path)
     model = AutoModel.from_pretrained(
         model_dir,
         trust_remote_code=True,
