@@ -14,7 +14,7 @@ MODE_DIR=$(python3 down_load_model.py $MODEL)
 # See the section for finetuning in README for more information.
 DATA="$2"
 EVAL_DATA="$3"
-LLM_TYPE="llama3" # if use openbmb/MiniCPM-V-2, please set LLM_TYPE=minicpm
+LLM_TYPE="minicpm" # if use openbmb/MiniCPM-V-2, please set LLM_TYPE=minicpm
 
 DISTRIBUTED_ARGS="
     --nproc_per_node $GPUS_PER_NODE \
