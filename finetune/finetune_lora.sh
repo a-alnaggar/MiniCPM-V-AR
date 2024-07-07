@@ -9,7 +9,7 @@ MASTER_PORT=6001
 MODEL="$1" # or openbmb/MiniCPM-V-2
 
 # Download model via modelscope
-# MODE_DIR=$(python3 down_load_model.py $MODEL)  
+MODE_DIR=$(python3 down_load_model.py $MODEL)  
 # ATTENTION: specify the path to your training data, which should be a json file consisting of a list of conversations.
 # See the section for finetuning in README for more information.
 DATA="$2"
@@ -42,7 +42,7 @@ torchrun $DISTRIBUTED_ARGS $(pwd)/finetune.py  \
     --tune_llm false \
     --use_lora true \
     --lora_target_modules "llm\..*layers\.\d+\.self_attn\.(q_proj|k_proj)" \
-    --model_max_length 2048 \
+    --model_max_length 1024 \
     --max_slice_nums 9 \
     --max_steps 10000 \
     --eval_steps 1000 \
@@ -51,7 +51,7 @@ torchrun $DISTRIBUTED_ARGS $(pwd)/finetune.py  \
     --logging_strategy "steps" \
     --per_device_train_batch_size 1 \
     --per_device_eval_batch_size 1 \
-    --gradient_accumulation_steps 1 \
+    --gradient_accumulation_steps 2 \
     --evaluation_strategy "steps" \
     --save_strategy "steps" \
     --save_steps 1000 \
