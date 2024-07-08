@@ -63,5 +63,5 @@ torchrun $DISTRIBUTED_ARGS $(pwd)/finetune.py  \
     --lr_scheduler_type "cosine" \
     --logging_steps 1 \
     --gradient_checkpointing true \
-    --deepspeed ds_config_zero2.json \
+    --deepspeed ds_config_zero3.json \
     --report_to "tensorboard" # wandb
